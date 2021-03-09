@@ -154,10 +154,18 @@ double SMCGetTemperature(char *key) {
     return 0.0;
 }
 
+/**
+ * Read CPU temperature
+ * @return CPU temp
+ */
 double readCpuTemp() {
     return SMCGetTemperature(SMC_KEY_CPU_TEMP);
 }
 
+/**
+ * Read GPU temperature
+ * @return GPU temp
+ */
 double readGpuTemp() {
     return SMCGetTemperature(SMC_KEY_GPU_TEMP);
 }
@@ -193,6 +201,10 @@ int getFloatFromVal(SMCVal_t val) {
     return f_val;
 }
 
+/**
+ * Get array of Fans and their data
+ * @return array of Fan_t. This is a data in heep, so be careful
+ */
 Fan_t *SMCFans(void) {
     kern_return_t result;
     SMCVal_t val;

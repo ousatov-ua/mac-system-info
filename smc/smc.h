@@ -117,8 +117,6 @@ kern_return_t SMCOpen();
 
 kern_return_t SMCClose();
 
-double SMCGetTemperature(char *key);
-
 double readCpuTemp();
 
 double readGpuTemp();
