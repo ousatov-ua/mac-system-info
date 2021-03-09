@@ -12,7 +12,7 @@
 
 class FansInfo : public Data {
 public:
-    Fan_info fans_info;
+    Fan_info fans_info{};
 
     void update();
 
