@@ -6,7 +6,6 @@
 #include "FansInfo.hpp"
 #include <string>
 #include <sstream>
-#include "../smc/smc.h"
 
 void FansInfo::update() {
     fans_info = SMCFans();
