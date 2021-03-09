@@ -1,6 +1,8 @@
 /*
  * Apple System Management Control (SMC) Tool
  * Copyright (C) 2006 devnull
+ * Copyright (C) 2020 theopolis (Teddy Reed)
+ * Copyright (C) 2021 alus
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
