@@ -18,7 +18,7 @@ public:
     const uint64_t cpu_type;
     const char *cpu_name;
 
-    double get_cpu_temp();
+    static double get_cpu_temp();
 
 
     std::string get_cpu_type() const;
