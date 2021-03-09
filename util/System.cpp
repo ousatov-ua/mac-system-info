@@ -12,7 +12,6 @@
 #define CPU_NAME "machdep.cpu.brand_string"
 #define CHAR_BUFFER_SIZE 1024
 
-
 #include <sys/sysctl.h>
 #include <iostream>
 #include <array>
