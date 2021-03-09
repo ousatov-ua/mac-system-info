@@ -4,7 +4,7 @@
 
 #include "Memory.hpp"
 
-#include "../System.hpp"
+#include "../util/System.hpp"
 
 Memory::Memory() : memory(System::get_memory()) {
 

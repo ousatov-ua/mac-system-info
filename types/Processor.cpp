@@ -3,7 +3,7 @@
 //
 
 #include "Processor.hpp"
-#include "../System.hpp"
+#include "../util/System.hpp"
 #include <nlohmann/json.hpp>
 #include <mach/machine.h>
 #include "../smc/smc.h"
