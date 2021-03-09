@@ -6,7 +6,6 @@
 #include "../util/System.hpp"
 #include <nlohmann/json.hpp>
 #include <mach/machine.h>
-#include "../smc/smc.h"
 
 Processor::Processor() : cpu_phys_number(System::get_physical_cpu()),
                          cpu_logical_number(System::get_logic_cpu()),
