@@ -21,8 +21,8 @@ public:
     ~SystemInfo();
 
 private:
-    Processor *const processor;
-    Memory * const memory;
+    std::unique_ptr<Processor> const processor;
+    std::unique_ptr<Memory> const memory;
 };
 
 

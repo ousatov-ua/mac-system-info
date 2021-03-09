@@ -49,7 +49,7 @@ void System::beep() {
     std::cout << '\a';
 }
 
-char *System::get_cpu_name() {
+std::unique_ptr<char> System::get_cpu_name() {
 
     // Cannot provide pointer to heep, will have: 11: SIGSEGV
     char buffer[CHAR_BUFFER_SIZE];
@@ -57,5 +57,9 @@ char *System::get_cpu_name() {
     sysctlbyname(CPU_NAME, &buffer, &size, nullptr, 0);
     char *result = new char[CHAR_BUFFER_SIZE];
     std::copy(buffer, buffer + size, result);
-    return result;
+    return std::unique_ptr<char>(result);
+}
+
+std::unique_ptr<Fan_t> System::get_fan_info() {
+    return std::unique_ptr<Fan_t>(SMCFans());
 }

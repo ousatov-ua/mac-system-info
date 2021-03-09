@@ -5,6 +5,8 @@
 #ifndef CPLUSPLUS_SYSTEM_HPP
 #define CPLUSPLUS_SYSTEM_HPP
 
+#include <memory>
+#include "../smc/smc.h"
 #include "../common/types.hpp"
 
 class System {
@@ -23,7 +25,9 @@ public:
 
     static void beep();
 
-    static char* get_cpu_name();
+    static std::unique_ptr<char> get_cpu_name();
+
+    static std::unique_ptr<Fan_t> get_fan_info();
 
 private:
     static uint64_t fetch_value(const char *func_name);

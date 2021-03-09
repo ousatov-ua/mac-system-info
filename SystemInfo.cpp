@@ -5,9 +5,10 @@
 #include "SystemInfo.hpp"
 #include "string"
 #include <nlohmann/json.hpp>
+#include <memory>
 #include "smc/smc.h"
 
-SystemInfo::SystemInfo() : processor(new Processor()), memory(new Memory()) {
+SystemInfo::SystemInfo() : processor(std::make_unique<Processor>()), memory(std::make_unique<Memory>()) {
     SMCOpen();
 }
 
@@ -21,6 +22,4 @@ std::string SystemInfo::to_string() {
 
 SystemInfo::~SystemInfo() {
     SMCClose();
-    delete processor;
-    delete memory;
 }

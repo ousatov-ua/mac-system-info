@@ -16,9 +16,7 @@ Processor::Processor() : cpu_phys_number(System::get_physical_cpu()),
 
 }
 
-Processor::~Processor() {
-    delete cpu_name;
-}
+Processor::~Processor() = default;
 
 std::string Processor::get_cpu_type() const {
     if (CPU_TYPE_I860 == cpu_type) {
@@ -35,7 +33,7 @@ double Processor::get_cpu_temp() {
 
 nlohmann::json Processor::to_json() {
     nlohmann::json res;
-    res["name"] = cpu_name;
+    res["name"] = cpu_name.get();
     res["type"] = cpu_type;
     res["type_name"] = get_cpu_type();
     res["phys_number"] = cpu_phys_number;
