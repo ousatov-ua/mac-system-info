@@ -8,10 +8,12 @@
 #include "../common/types.hpp"
 #include "Data.hpp"
 
-class Memory : public Data{
+class Memory : public Data {
 public:
     Memory();
+
     nlohmann::json to_json() override;
+
 private:
     const uint64_t memory;
 };

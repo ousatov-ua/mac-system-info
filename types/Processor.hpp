@@ -17,6 +17,7 @@ public:
     const uint64_t cpu_freq;
     const uint64_t cpu_type;
     const char *cpu_name;
+
     double get_cpu_temp();
 
 
