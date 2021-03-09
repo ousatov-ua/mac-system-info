@@ -192,7 +192,7 @@ float c_strtof(char *str, int size, int e) {
     return total;
 }
 
-float getFloatFromVal(SMCVal_t val) {
+float float_from_val(SMCVal_t val) {
     float f_val = -1;
 
     if (val.dataSize > 0) {
@@ -237,19 +237,19 @@ Fan_info SMCFans() {
         }
         sprintf(key, "F%cAc", fannum[i]);
         SMCReadKey(key, &val);
-        fan.actual_speed = getFloatFromVal(val);
+        fan.actual_speed = float_from_val(val);
         sprintf(key, "F%cMn", fannum[i]);
         SMCReadKey(key, &val);
-        fan.minimal_speed = getFloatFromVal(val);
+        fan.minimal_speed = float_from_val(val);
         sprintf(key, "F%cMx", fannum[i]);
         SMCReadKey(key, &val);
-        fan.maximum_speed = getFloatFromVal(val);
+        fan.maximum_speed = float_from_val(val);
         sprintf(key, "F%cSf", fannum[i]);
         SMCReadKey(key, &val);
-        fan.safe_speed = getFloatFromVal(val);
+        fan.safe_speed = float_from_val(val);
         sprintf(key, "F%cTg", fannum[i]);
         SMCReadKey(key, &val);
-        fan.target_speed = getFloatFromVal(val);
+        fan.target_speed = float_from_val(val);
         SMCReadKey("FS! ", &val);
         if (val.dataSize > 0) {
             if ((c_strtoul((char *) val.bytes, 2, 16) & (1 << i)) == 0)
@@ -258,7 +258,7 @@ Fan_info SMCFans() {
                 fan.mode = CPU_FORCED
         } else {
             SMCReadKey(key, &val);
-            if (getFloatFromVal(val))
+            if (float_from_val(val))
                 fan.mode = CPU_FORCED
             else
                 fan.mode = CPU_AUTO
