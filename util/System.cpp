@@ -49,8 +49,6 @@ void System::beep() {
 }
 
 std::unique_ptr<char> System::get_cpu_name() {
-
-    // Cannot provide pointer to heep, will have: 11: SIGSEGV
     char buffer[CHAR_BUFFER_SIZE];
     size_t size = sizeof(buffer);
     sysctlbyname(CPU_NAME, &buffer, &size, nullptr, 0);
