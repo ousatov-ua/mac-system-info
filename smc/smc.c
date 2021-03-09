@@ -28,7 +28,7 @@ static io_connect_t conn;
 
 UInt8 fannum[] = "0123456789ABCDEFGHIJ";
 
-UInt32 _strtoul(char *str, int size, int base) {
+UInt32 c_strtoul(const char *str, int size, int base) {
     UInt32 total = 0;
     int i;
 
@@ -41,7 +41,7 @@ UInt32 _strtoul(char *str, int size, int base) {
     return total;
 }
 
-void _ultostr(char *str, UInt32 val) {
+void c_ultostr(char *str, UInt32 val) {
     str[0] = '\0';
     sprintf(str, "%c%c%c%c",
             (unsigned int) val >> 24,
@@ -114,7 +114,7 @@ kern_return_t SMCReadKey(UInt32Char_t key, SMCVal_t *val) {
     memset(&outputStructure, 0, sizeof(SMCKeyData_t));
     memset(val, 0, sizeof(SMCVal_t));
 
-    inputStructure.key = _strtoul(key, 4, 16);
+    inputStructure.key = c_strtoul(key, 4, 16);
     inputStructure.data8 = SMC_CMD_READ_KEYINFO;
 
     result = SMCCall(KERNEL_INDEX_SMC, &inputStructure, &outputStructure);
@@ -122,7 +122,7 @@ kern_return_t SMCReadKey(UInt32Char_t key, SMCVal_t *val) {
         return result;
 
     val->dataSize = outputStructure.keyInfo.dataSize;
-    _ultostr(val->dataType, outputStructure.keyInfo.dataType);
+    c_ultostr(val->dataType, outputStructure.keyInfo.dataType);
     inputStructure.keyInfo.dataSize = val->dataSize;
     inputStructure.data8 = SMC_CMD_READ_BYTES;
 
@@ -162,8 +162,8 @@ double readGpuTemp() {
     return SMCGetTemperature(SMC_KEY_GPU_TEMP);
 }
 
-float _strtof(char *str, int size, int e) {
-    float total = 0;
+int c_strtof(const char *str, int size, int e) {
+    int total = 0;
     int i;
 
     for (i = 0; i < size; i++) {
@@ -176,23 +176,21 @@ float _strtof(char *str, int size, int e) {
     return total;
 }
 
-//TODO Fix me with other types
-float getFloatFromVal(SMCVal_t val) {
-    float fval = -1.0f;
+int getFloatFromVal(SMCVal_t val) {
+    int f_val = -1;
 
     if (val.dataSize > 0) {
         if (strcmp(val.dataType, DATATYPE_FLT) == 0 && val.dataSize == 4) {
-            memcpy(&fval, val.bytes, sizeof(float));
+            memcpy(&f_val, val.bytes, sizeof(float));
         } else if (strcmp(val.dataType, DATATYPE_FPE2) == 0 && val.dataSize == 2) {
-            fval = _strtof(val.bytes, val.dataSize, 2);
+            f_val = c_strtof(val.bytes, val.dataSize, 2);
         } else if (strcmp(val.dataType, DATATYPE_UINT16) == 0 && val.dataSize == 2) {
-            fval = (float) _strtoul((char *) val.bytes, val.dataSize, 10);
+            f_val = c_strtoul((char *) val.bytes, val.dataSize, 10);
         } else if (strcmp(val.dataType, DATATYPE_UINT8) == 0 && val.dataSize == 1) {
-            fval = (float) _strtoul((char *) val.bytes, val.dataSize, 10);
+            f_val = c_strtoul((char *) val.bytes, val.dataSize, 10);
         }
     }
-
-    return fval;
+    return f_val;
 }
 
 Fan_t *SMCFans(void) {
@@ -206,7 +204,7 @@ Fan_t *SMCFans(void) {
     if (result != kIOReturnSuccess)
         return fans;
 
-    totalFans = _strtoul((char *) val.bytes, val.dataSize, 10);
+    totalFans = c_strtoul((char *) val.bytes, val.dataSize, 10);
 
     fans = malloc(sizeof(Fan_t) * totalFans);
     for (i = 0; i < totalFans; i++) {
@@ -229,17 +227,17 @@ Fan_t *SMCFans(void) {
         f.target_speed = getFloatFromVal(val);
         SMCReadKey("FS! ", &val);
         if (val.dataSize > 0) {
-            if ((_strtoul((char *) val.bytes, 2, 16) & (1 << i)) == 0) {
-                f.mode = CPU_AUTO;
+            if ((c_strtoul((char *) val.bytes, 2, 16) & (1 << i)) == 0) {
+                f.mode = CPU_AUTO
             } else {
-                f.mode = CPU_FORCED;
+                f.mode = CPU_FORCED
             }
         } else {
             SMCReadKey(key, &val);
             if (getFloatFromVal(val)) {
-                f.mode = CPU_FORCED;
+                f.mode = CPU_FORCED
             } else {
-                f.mode = CPU_AUTO;
+                f.mode = CPU_AUTO
             }
         }
         fans[i] = f;
