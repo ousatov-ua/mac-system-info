@@ -5,7 +5,7 @@
 #ifndef SYSTEM_INFO_PROCESSOR_HPP
 #define SYSTEM_INFO_PROCESSOR_HPP
 
-#include "../headers/types.hpp"
+#include "../common/types.hpp"
 #include <string>
 #include "nlohmann/json.hpp"
 #include <mach/machine.h>

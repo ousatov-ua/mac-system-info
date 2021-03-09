@@ -5,7 +5,7 @@
 #ifndef CPLUSPLUS_SYSTEM_HPP
 #define CPLUSPLUS_SYSTEM_HPP
 
-#include "headers/types.hpp"
+#include "common/types.hpp"
 
 class System {
 
