@@ -12,5 +12,5 @@ add_executable(system_info main.cpp util/System.cpp util/System.hpp SystemInfo.c
         types/Processor.cpp types/Processor.hpp common/types.hpp
         types/Memory.cpp types/Memory.hpp
         types/Data.cpp types/Data.hpp
-        smc/smc.c smc/smc.h)
+        smc/smc.c smc/smc.h types/FansInfo.cpp types/FansInfo.hpp)
 target_link_libraries(system_info nlohmann_json "-framework IOKit")

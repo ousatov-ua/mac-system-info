@@ -95,17 +95,25 @@ typedef struct {
     SMCBytes_t bytes;
 } SMCVal_t;
 
+
 typedef struct {
-    int number;
     UInt8 id;
     SMCBytes_t name;
-    int actual_speed;
-    int minimal_speed;
-    int maximum_speed;
-    int safe_speed;
-    int target_speed;
+    float actual_speed;
+    float minimal_speed;
+    float maximum_speed;
+    float safe_speed;
+    float target_speed;
     int mode;
 } Fan_t;
+
+
+typedef Fan_t Fans[16];
+
+typedef struct {
+    Fans fans;
+    int size;
+} Fan_info;
 
 #define DATATYPE_FLT          "flt "
 
@@ -121,7 +129,9 @@ double readCpuTemp();
 
 double readGpuTemp();
 
-Fan_t *SMCFans(void);
+Fan_info SMCFans();
+
+kern_return_t SMCPrintFans(void);
 
 #ifdef __cplusplus
 }

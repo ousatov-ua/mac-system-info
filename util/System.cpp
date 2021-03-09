@@ -60,6 +60,6 @@ std::unique_ptr<char> System::get_cpu_name() {
     return std::unique_ptr<char>(result);
 }
 
-std::unique_ptr<Fan_t> System::get_fan_info() {
-    return std::unique_ptr<Fan_t>(SMCFans());
+Fan_info System::get_fan_info() {
+    return SMCFans();
 }

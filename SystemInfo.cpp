@@ -8,7 +8,8 @@
 #include <memory>
 #include "smc/smc.h"
 
-SystemInfo::SystemInfo() : processor(std::make_unique<Processor>()), memory(std::make_unique<Memory>()) {
+SystemInfo::SystemInfo() : processor(std::make_unique<Processor>()), memory(std::make_unique<Memory>()),
+                           fans_info(std::make_unique<FansInfo>()) {
     SMCOpen();
 }
 
@@ -17,6 +18,7 @@ std::string SystemInfo::to_string() {
     const string name = "system_info";
     res[name]["cpu"] = processor->to_json();
     res[name]["memory"] = memory->to_json();
+    res[name]["fans"] = fans_info->to_json();
     return res.dump(4);
 }
 

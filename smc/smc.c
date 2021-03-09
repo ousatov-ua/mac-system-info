@@ -178,8 +178,8 @@ double readGpuTemp() {
     return SMCGetTemperature(SMC_KEY_GPU_TEMP);
 }
 
-int c_strtof(const char *str, int size, int e) {
-    int total = 0;
+float c_strtof(char *str, int size, int e) {
+    float total = 0;
     int i;
 
     for (i = 0; i < size; i++) {
@@ -192,8 +192,8 @@ int c_strtof(const char *str, int size, int e) {
     return total;
 }
 
-int getFloatFromVal(SMCVal_t val) {
-    int f_val = -1;
+float getFloatFromVal(SMCVal_t val) {
+    float f_val = -1;
 
     if (val.dataSize > 0) {
         if (strcmp(val.dataType, DATATYPE_FLT) == 0 && val.dataSize == 4) {
@@ -213,54 +213,59 @@ int getFloatFromVal(SMCVal_t val) {
  * Get array of Fans and their data
  * @return array of Fan_t. This is a data in heep, so be careful
  */
-Fan_t *SMCFans(void) {
+Fan_info SMCFans() {
     kern_return_t result;
     SMCVal_t val;
     UInt32Char_t key;
     int totalFans, i;
-
-    Fan_t *fans = malloc(sizeof(Fan_t));
     result = SMCReadKey("FNum", &val);
+    Fan_info fan_info = {};
     if (result != kIOReturnSuccess)
-        return fans;
+        return fan_info;
 
     totalFans = c_strtoul((char *) val.bytes, val.dataSize, 10);
-
-    fans = malloc(sizeof(Fan_t) * totalFans);
+    Fans fans;
     for (i = 0; i < totalFans; i++) {
-        Fan_t f;
-        f.number = i;
-        f.number = fannum[i];
+        Fan_t fan;
+        fan.id = i;
+        sprintf(key, "F%cID", fannum[i]);
         SMCReadKey(key, &val);
         if (val.dataSize > 0) {
-            memcpy(f.name, val.bytes, sizeof(val.bytes));
+            sprintf(fan.name, "Fan ID: %s\n", val.bytes + 4);
+        } else {
+            strcpy(fan.name, "Unknown\0");
         }
+        sprintf(key, "F%cAc", fannum[i]);
         SMCReadKey(key, &val);
-        f.actual_speed = getFloatFromVal(val);
+        fan.actual_speed = getFloatFromVal(val);
+        sprintf(key, "F%cMn", fannum[i]);
         SMCReadKey(key, &val);
-        f.minimal_speed = getFloatFromVal(val);
+        fan.minimal_speed = getFloatFromVal(val);
+        sprintf(key, "F%cMx", fannum[i]);
         SMCReadKey(key, &val);
-        f.maximum_speed = getFloatFromVal(val);
+        fan.maximum_speed = getFloatFromVal(val);
+        sprintf(key, "F%cSf", fannum[i]);
         SMCReadKey(key, &val);
-        f.safe_speed = getFloatFromVal(val);
+        fan.safe_speed = getFloatFromVal(val);
+        sprintf(key, "F%cTg", fannum[i]);
         SMCReadKey(key, &val);
-        f.target_speed = getFloatFromVal(val);
+        fan.target_speed = getFloatFromVal(val);
         SMCReadKey("FS! ", &val);
         if (val.dataSize > 0) {
-            if ((c_strtoul((char *) val.bytes, 2, 16) & (1 << i)) == 0) {
-                f.mode = CPU_AUTO
-            } else {
-                f.mode = CPU_FORCED
-            }
+            if ((c_strtoul((char *) val.bytes, 2, 16) & (1 << i)) == 0)
+                fan.mode = CPU_AUTO
+            else
+                fan.mode = CPU_FORCED
         } else {
             SMCReadKey(key, &val);
-            if (getFloatFromVal(val)) {
-                f.mode = CPU_FORCED
-            } else {
-                f.mode = CPU_AUTO
-            }
+            if (getFloatFromVal(val))
+                fan.mode = CPU_FORCED
+            else
+                fan.mode = CPU_AUTO
         }
-        fans[i] = f;
+        fans[i] = fan;
     }
-    return fans;
+    fan_info.size = totalFans;
+    memcpy(fan_info.fans, fans, sizeof(fans));
+    return fan_info;
 }

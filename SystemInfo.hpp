@@ -9,6 +9,7 @@
 #include <string>
 #include "types/Processor.hpp"
 #include "types/Memory.hpp"
+#include "types/FansInfo.hpp"
 
 using namespace std;
 
@@ -23,6 +24,7 @@ public:
 private:
     std::unique_ptr<Processor> const processor;
     std::unique_ptr<Memory> const memory;
+    std::unique_ptr<FansInfo> const fans_info;
 };
 
 
