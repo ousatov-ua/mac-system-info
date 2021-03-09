@@ -50,6 +50,10 @@ void c_ultostr(char *str, UInt32 val) {
             (unsigned int) val);
 }
 
+/**
+ * Open connection to SMC
+ * @return kern_return_t
+ */
 kern_return_t SMCOpen() {
     kern_return_t result;
     io_iterator_t iterator;
@@ -79,6 +83,10 @@ kern_return_t SMCOpen() {
     return kIOReturnSuccess;
 }
 
+/**
+ * Close connection to SMC
+ * @return  kern_return_t
+ */
 kern_return_t SMCClose() {
     return IOServiceClose(conn);
 }
