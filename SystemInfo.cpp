@@ -9,16 +9,18 @@
 #include "smc/smc.h"
 
 SystemInfo::SystemInfo() : processor(std::make_unique<Processor>()), memory(std::make_unique<Memory>()),
-                           fans_info(std::make_unique<FansInfo>()) {
+                           fans_info(std::make_unique<FansInfo>()),
+                           gpu(std::make_unique<Gpu>()) {
     SMCOpen();
 }
 
 std::string SystemInfo::to_string() {
-    nlohmann::json res;
+    nlohmann::ordered_json res;
     const string name = "system_info";
     res[name]["cpu"] = processor->to_json();
     res[name]["memory"] = memory->to_json();
     res[name]["fans"] = fans_info->to_json();
+    res[name]["gpu"] = gpu->to_json();
     return res.dump(4);
 }
 

@@ -11,7 +11,7 @@ Memory::Memory() : memory(System::get_memory()) {
 }
 
 nlohmann::json Memory::to_json() {
-    nlohmann::json res;
+    nlohmann::ordered_json res;
     res["memory"] = memory;
     return res;
 }

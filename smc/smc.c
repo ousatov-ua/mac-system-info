@@ -233,7 +233,7 @@ Fan_info SMCFans() {
         if (val.dataSize > 0) {
             sprintf(fan.name, "Fan ID: %s\n", val.bytes + 4);
         } else {
-            strcpy(fan.name, "Unknown\0");
+            strcpy(fan.name, "[Empty]\0");
         }
         sprintf(key, "F%cAc", fannum[i]);
         SMCReadKey(key, &val);

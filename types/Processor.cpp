@@ -26,19 +26,18 @@ std::string Processor::get_cpu_type() const {
     return std::to_string(cpu_type);
 }
 
-double Processor::get_cpu_temp() {
+double Processor::get_cpu_temperature() {
     return readCpuTemp();
 }
 
 nlohmann::json Processor::to_json() {
-    nlohmann::json res;
+    nlohmann::ordered_json res;
     res["name"] = cpu_name.get();
     res["type"] = cpu_type;
-    res["type_name"] = get_cpu_type();
-    res["phys_number"] = cpu_phys_number;
-    res["logical_number"] = cpu_logical_number;
+    res["phys_cores"] = cpu_phys_number;
+    res["logical_cores"] = cpu_logical_number;
     res["freq"] = cpu_freq;
-    res["temp"] = get_cpu_temp();
+    res["temperature"] = std::to_string(get_cpu_temperature()) + CELCIUS;
     return res;
 }
 

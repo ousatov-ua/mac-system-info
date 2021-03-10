@@ -13,7 +13,7 @@ void FansInfo::update() {
 
 nlohmann::json FansInfo::to_json() {
     update();
-    nlohmann::json res;
+    nlohmann::ordered_json res;
     for (int i = 0; i < fans_info.size; i++) {
         auto fan = fans_info.fans[i];
         std::stringstream ss;
