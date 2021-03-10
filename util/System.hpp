@@ -25,7 +25,7 @@ public:
 
     static void beep();
 
-    static std::unique_ptr<char> get_cpu_name();
+    static std::unique_ptr<char[]> get_cpu_name();
 
     static Fan_info get_fan_info();
 
