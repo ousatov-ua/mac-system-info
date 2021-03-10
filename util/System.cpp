@@ -49,12 +49,10 @@ void System::beep() {
 }
 
 std::unique_ptr<char[]> System::get_cpu_name() {
-    char buffer[CHAR_BUFFER_SIZE];
-    size_t size = sizeof(buffer);
-    sysctlbyname(CPU_NAME, &buffer, &size, nullptr, 0);
-    auto result = std::make_unique<char[]>(CHAR_BUFFER_SIZE);
-    std::copy(buffer, buffer + size, result.get());
-    return result;
+    auto buffer = std::make_unique<char[]>(CHAR_BUFFER_SIZE);
+    size_t size = sizeof(char)*CHAR_BUFFER_SIZE;
+    sysctlbyname(CPU_NAME, buffer.get(), &size, nullptr, 0);
+    return buffer;
 }
 
 Fan_info System::get_fan_info() {
