@@ -29,8 +29,6 @@ public:
 
     static std::unique_ptr<char[]> get_cpu_name();
 
-    static Fan_info get_fan_info();
-
 private:
     static uint64_t fetch_value(const char *func_name);
 };

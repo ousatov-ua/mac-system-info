@@ -54,7 +54,3 @@ std::unique_ptr<char[]> System::get_cpu_name() {
     sysctlbyname(CPU_NAME, buffer.get(), &size, nullptr, 0);
     return buffer;
 }
-
-Fan_info System::get_fan_info() {
-    return SMCFans();
-}
