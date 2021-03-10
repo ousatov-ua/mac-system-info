@@ -50,7 +50,7 @@ void System::beep() {
 
 std::unique_ptr<char[]> System::get_cpu_name() {
     auto buffer = std::make_unique<char[]>(CHAR_BUFFER_SIZE);
-    size_t size = sizeof(char)*CHAR_BUFFER_SIZE;
+    size_t size = sizeof(char) * CHAR_BUFFER_SIZE;
     sysctlbyname(CPU_NAME, buffer.get(), &size, nullptr, 0);
     return buffer;
 }
