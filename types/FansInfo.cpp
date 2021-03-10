@@ -17,9 +17,9 @@ nlohmann::json FansInfo::to_json() {
     for (int i = 0; i < fans_info.size; i++) {
         auto fan = fans_info.fans[i];
         std::stringstream ss;
-        ss<<fan.name;
+        ss << fan.name;
         std::string name;
-        ss>>name;
+        ss >> name;
         res[i]["id"] = fan.id;
         res[i]["actual_speed"] = fan.actual_speed;
         res[i]["minimal_speed"] = fan.minimal_speed;

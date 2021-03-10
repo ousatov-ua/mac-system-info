@@ -8,6 +8,7 @@
 #include <memory>
 #include "../smc/smc.h"
 #include "../common/types.hpp"
+
 #define CELCIUS "˚C"
 
 class System {

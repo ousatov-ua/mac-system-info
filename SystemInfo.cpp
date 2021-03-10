@@ -3,7 +3,6 @@
 //
 
 #include "SystemInfo.hpp"
-#include "string"
 #include <nlohmann/json.hpp>
 #include <memory>
 #include "smc/smc.h"

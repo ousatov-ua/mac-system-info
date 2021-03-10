@@ -16,7 +16,7 @@ public:
     const uint64_t cpu_logical_number;
     const uint64_t cpu_freq;
     const uint64_t cpu_type;
-    const std::unique_ptr<char[]>cpu_name;
+    const std::unique_ptr<char[]> cpu_name;
 
     static double get_cpu_temperature();
 
