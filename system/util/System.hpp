@@ -7,7 +7,7 @@
 
 #include <memory>
 #include "../smc/smc.h"
-#include "../common/types.hpp"
+#include "../types/types.hpp"
 
 #define CELCIUS "˚C"
 

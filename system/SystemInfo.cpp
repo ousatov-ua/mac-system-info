@@ -14,15 +14,19 @@ SystemInfo::SystemInfo() : processor(std::make_unique<Processor>()), memory(std:
 }
 
 std::string SystemInfo::to_string() {
+    return to_json().dump(4);
+}
+
+SystemInfo::~SystemInfo() {
+    SMCClose();
+}
+
+nlohmann::ordered_json SystemInfo::to_json() {
     nlohmann::ordered_json res;
     const string name = "system_info";
     res[name]["cpu"] = processor->to_json();
     res[name]["memory"] = memory->to_json();
     res[name]["fans"] = fans_info->to_json();
     res[name]["gpu"] = gpu->to_json();
-    return res.dump(4);
-}
-
-SystemInfo::~SystemInfo() {
-    SMCClose();
+    return res;
 }

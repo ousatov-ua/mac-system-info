@@ -1,10 +1,12 @@
 #include <iostream>
-#include "SystemInfo.hpp"
+#include "system/SystemInfo.hpp"
 
-using namespace std;
+
+#include "ui/console/Controller.hpp"
 
 int main() {
+    Controller controller;
     SystemInfo systemInfo;
-    std::cout << systemInfo.to_string() << endl;
+    controller.display(systemInfo);
     return 0;
 }

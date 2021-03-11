@@ -5,7 +5,7 @@
 #ifndef SYSTEM_INFO_PROCESSOR_HPP
 #define SYSTEM_INFO_PROCESSOR_HPP
 
-#include "../common/types.hpp"
+#include "types.hpp"
 #include <string>
 #include "nlohmann/json.hpp"
 #include <mach/machine.h>
@@ -19,7 +19,6 @@ public:
     const std::unique_ptr<char[]> cpu_name;
 
     static double get_cpu_temperature();
-
 
     std::string get_cpu_type() const;
 

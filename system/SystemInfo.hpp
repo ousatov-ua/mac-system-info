@@ -18,6 +18,8 @@ class SystemInfo {
 public:
     string to_string();
 
+    nlohmann::ordered_json to_json();
+
     SystemInfo();
 
     ~SystemInfo();

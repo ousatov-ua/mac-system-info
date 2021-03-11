@@ -5,7 +5,7 @@
 #ifndef SYSTEM_INFO_MEMORY_HPP
 #define SYSTEM_INFO_MEMORY_HPP
 
-#include "../common/types.hpp"
+#include "types.hpp"
 #include "Data.hpp"
 
 class Memory : public Data {

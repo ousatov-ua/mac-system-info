@@ -8,13 +8,13 @@ find_package(nlohmann_json REQUIRED)
 
 find_library(iokit IOKit)
 
-add_executable(system_info main.cpp util/System.cpp util/System.hpp
-        SystemInfo.cpp SystemInfo.hpp
-        types/Processor.cpp types/Processor.hpp
-        common/types.hpp
-        types/Memory.cpp types/Memory.hpp
-        types/Data.cpp types/Data.hpp
-        smc/smc.c smc/smc.h
-        types/FansInfo.cpp types/FansInfo.hpp
-        types/Gpu.cpp types/Gpu.hpp)
+add_executable(system_info main.cpp system/util/System.cpp system/util/System.hpp
+        system/SystemInfo.cpp system/SystemInfo.hpp
+        system/types/Processor.cpp system/types/Processor.hpp
+        system/types/types.hpp
+        system/types/Memory.cpp system/types/Memory.hpp
+        system/types/Data.cpp system/types/Data.hpp
+        system/smc/smc.c system/smc/smc.h
+        system/types/FansInfo.cpp system/types/FansInfo.hpp
+        system/types/Gpu.cpp system/types/Gpu.hpp ui/console/UI.cpp ui/console/UI.hpp ui/console/Controller.cpp ui/console/Controller.hpp)
 target_link_libraries(system_info nlohmann_json "-framework IOKit")
