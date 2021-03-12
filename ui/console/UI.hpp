@@ -8,11 +8,11 @@
 #include <nlohmann/json.hpp>
 #include "ncurses.h"
 
-typedef void (*catchSig)(int);
+typedef void (*catch_sig_func)(int);
 
 class UI {
 public:
-    explicit UI(catchSig);
+    explicit UI(catch_sig_func);
 
     ~UI();
 

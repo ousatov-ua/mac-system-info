@@ -24,7 +24,7 @@ WINDOW *UI::window = nullptr;
 int UI::max_x = 0;
 int UI::max_y = 0;
 
-UI::UI(catchSig catch_sig) {
+UI::UI(catch_sig_func catch_sig) {
     signal(SIGINT, catch_sig);
     initscr();
     keypad(stdscr, true);
