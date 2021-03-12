@@ -4,7 +4,6 @@
 
 #include "UI.hpp"
 #include <ncurses.h>
-#include <unistd.h>
 #include <memory>
 #include <iostream>
 
