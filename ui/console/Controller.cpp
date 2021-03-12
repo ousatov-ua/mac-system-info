@@ -5,11 +5,13 @@
 #include "Controller.hpp"
 #include <unistd.h>
 
+#define REFRESH_MICRO_SECONDS 5000000
+
 void Controller::display(SystemInfo &systemInfo) {
     while (!UI::terminated) {
         auto json = systemInfo.to_json();
         ui->show(json);
-        usleep(5000000);
+        usleep(REFRESH_MICRO_SECONDS);
     }
 }
 
