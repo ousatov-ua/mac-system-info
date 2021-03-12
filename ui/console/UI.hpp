@@ -14,7 +14,7 @@ public:
 
     ~UI();
 
-    void show(nlohmann::ordered_json &);
+    static void show(nlohmann::ordered_json &);
     static bool terminated;
 private:
     static WINDOW * window;
