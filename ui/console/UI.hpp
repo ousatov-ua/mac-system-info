@@ -8,20 +8,24 @@
 #include <nlohmann/json.hpp>
 #include "ncurses.h"
 
+typedef void (*catchSig)(int);
+
 class UI {
 public:
-    UI();
+    explicit UI(catchSig);
 
     ~UI();
 
     static void show(nlohmann::ordered_json &);
-    static bool terminated;
+
 private:
-    static WINDOW * window;
-    static void catch_sig(int);
+    static WINDOW *window;
+
     static void process();
+
     static int max_x;
     static int max_y;
+
     static void clear_line(int y, int l);
 };
 

@@ -12,9 +12,14 @@
 class Controller {
 public:
     Controller();
-    void display(SystemInfo&);
+
+    void display(SystemInfo &);
+
+    static void catch_sig(int);
+
 private:
     std::unique_ptr<UI> ui;
+    static bool terminated;
 };
 
 

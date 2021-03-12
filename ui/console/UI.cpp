@@ -23,9 +23,8 @@ void UI::show(nlohmann::ordered_json &json) {
 WINDOW *UI::window = nullptr;
 int UI::max_x = 0;
 int UI::max_y = 0;
-bool UI::terminated = false;
 
-UI::UI() {
+UI::UI(catchSig catch_sig) {
     signal(SIGINT, catch_sig);
     initscr();
     keypad(stdscr, true);
@@ -41,10 +40,6 @@ UI::UI() {
         init_pair(3, COLOR_BLACK, COLOR_CYAN);
     }
     process();
-}
-
-void UI::catch_sig(int sig) {
-    UI::terminated = true;
 }
 
 void UI::process() {
