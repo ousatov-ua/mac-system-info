@@ -9,8 +9,6 @@
 #include "../smc/smc.h"
 #include "../types/types.hpp"
 
-#define CELCIUS "˚C"
-
 class System {
 
 public:
