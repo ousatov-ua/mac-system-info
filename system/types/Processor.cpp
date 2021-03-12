@@ -37,7 +37,7 @@ nlohmann::json Processor::to_json() {
     res["phys_cores"] = cpu_phys_number;
     res["logical_cores"] = cpu_logical_number;
     res["freq"] = cpu_freq;
-    res["temperature"] = std::to_string(get_cpu_temperature());
+    res["temperature"] = get_cpu_temperature();
     return res;
 }
 

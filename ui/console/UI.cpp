@@ -6,6 +6,7 @@
 #include <ncurses.h>
 #include <unistd.h>
 #include <memory>
+#include <iostream>
 
 #define KEY_QUIT 113
 
