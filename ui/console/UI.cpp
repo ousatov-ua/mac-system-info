@@ -51,7 +51,9 @@ void UI::process() {
     getmaxyx(UI::window, max_y, max_x);
 
     attrset(COLOR_PAIR(1));
-    for (int i = 0; i <= max_y; i++) clear_line(i, max_x);
+    for (int i = 0; i <= max_y; i++) {
+        clear_line(i, max_x);
+    }
 
     // Draw header
     attrset(A_BOLD | COLOR_PAIR(2));
