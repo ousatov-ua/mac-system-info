@@ -83,7 +83,9 @@ void UI::clear_line(int y, int l) {
     move(y, 1);
     l++;
     char str[l];
-    for (int i = 0; i < l; i++) str[i] = ' ';
+    for (int i = 0; i < l; i++) {
+        str[i] = ' ';
+    }
     str[l - 1] = '\0';
     mvaddstr(y, 0, str);
 }
