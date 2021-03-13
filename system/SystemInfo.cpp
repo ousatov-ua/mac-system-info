@@ -7,6 +7,8 @@
 #include <memory>
 #include "smc/smc.h"
 
+#define INDENT 4
+
 SystemInfo::SystemInfo() : processor(std::make_unique<Processor>()), memory(std::make_unique<Memory>()),
                            fans_info(std::make_unique<FansInfo>()),
                            gpu(std::make_unique<Gpu>()) {
@@ -14,7 +16,7 @@ SystemInfo::SystemInfo() : processor(std::make_unique<Processor>()), memory(std:
 }
 
 std::string SystemInfo::to_string() {
-    return to_json().dump(4);
+    return to_json().dump(INDENT);
 }
 
 SystemInfo::~SystemInfo() {
