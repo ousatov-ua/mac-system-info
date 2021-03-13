@@ -5,7 +5,7 @@
 #ifndef SYSTEM_INFO_CONTROLLER_HPP
 #define SYSTEM_INFO_CONTROLLER_HPP
 
-#include "../../system/SystemInfo.hpp"
+#include "../../core/SystemInfo.hpp"
 #include "UI.hpp"
 #include <memory>
 

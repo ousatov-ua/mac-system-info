@@ -1,4 +1,4 @@
-#include "system/SystemInfo.hpp"
+#include "core/SystemInfo.hpp"
 #include "ui/console/Controller.hpp"
 
 int main() {

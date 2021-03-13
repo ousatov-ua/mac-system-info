@@ -9,13 +9,13 @@ find_package(Curses REQUIRED)
 
 find_library(iokit IOKit)
 
-add_executable(system_info main.cpp system/util/System.cpp system/util/System.hpp
-        system/SystemInfo.cpp system/SystemInfo.hpp
-        system/types/Processor.cpp system/types/Processor.hpp
-        system/types/types.hpp
-        system/types/Memory.cpp system/types/Memory.hpp
-        system/types/Data.cpp system/types/Data.hpp
-        system/smc/smc.c system/smc/smc.h
-        system/types/FansInfo.cpp system/types/FansInfo.hpp
-        system/types/Gpu.cpp system/types/Gpu.hpp ui/console/UI.cpp ui/console/UI.hpp ui/console/Controller.cpp ui/console/Controller.hpp)
+add_executable(system_info main.cpp core/util/System.cpp core/util/System.hpp
+        core/SystemInfo.cpp core/SystemInfo.hpp
+        core/types/Processor.cpp core/types/Processor.hpp
+        core/types/types.hpp
+        core/types/Memory.cpp core/types/Memory.hpp
+        core/types/Data.cpp core/types/Data.hpp
+        core/smc/smc.c core/smc/smc.h
+        core/types/FansInfo.cpp core/types/FansInfo.hpp
+        core/types/Gpu.cpp core/types/Gpu.hpp ui/console/UI.cpp ui/console/UI.hpp ui/console/Controller.cpp ui/console/Controller.hpp)
 target_link_libraries(system_info nlohmann_json Curses "-framework IOKit")
