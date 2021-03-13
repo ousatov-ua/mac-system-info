@@ -8,7 +8,7 @@
 #include <nlohmann/json.hpp>
 #include "ncurses.h"
 
-typedef void (*catch_sig_func)(int);
+using catch_sig_func = void (*)(int);
 
 class UI {
 public:
