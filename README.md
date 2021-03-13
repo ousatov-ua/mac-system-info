@@ -10,21 +10,10 @@ Use CLion or any other IDE to open it, `CMakeLists.txt` should be used for that.
 
 ## SMC
 
-Information about temperatures and fan is fetched from SMC
+Information about temperatures and fan is fetched from SMC.
 
 ## Build
-
-You'll need `nlomann_json` to build it:
-`brew tap nlohmann/json` and `brew install nlohmann_json`
-
-You'll need `ncurses`:
-`brew install ncurses`
-
-After that run in the root of project:
-
-`cmake .`
-
-`make all`
+Can be built by running `build.sh` (you'll need `brew` installed).
 
 # The output
 
