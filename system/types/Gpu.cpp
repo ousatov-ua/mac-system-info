@@ -6,7 +6,7 @@
 #include "../util/System.hpp"
 
 double Gpu::getTemperature() {
-    return readGpuTemp();
+    return SmcLib.readGpuTemp();
 }
 
 nlohmann::json Gpu::to_json() {

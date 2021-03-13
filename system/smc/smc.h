@@ -107,7 +107,6 @@ typedef struct {
     int mode;
 } Fan_t;
 
-
 typedef Fan_t Fans[16];
 
 typedef struct {
@@ -115,26 +114,19 @@ typedef struct {
     int size;
 } Fan_info;
 
+struct smc_lib {
+    kern_return_t (*SMCOpen)(void);
+
+    kern_return_t (*SMCClose)(void);
+
+    double (*readCpuTemp)(void);
+
+    double (*readGpuTemp)(void);
+
+    Fan_info (*SMCFans)(void);
+};
+
+extern const struct smc_lib SmcLib;
+
 #define DATATYPE_FLT          "flt "
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-kern_return_t SMCOpen();
-
-kern_return_t SMCClose();
-
-double readCpuTemp();
-
-double readGpuTemp();
-
-Fan_info SMCFans();
-
-kern_return_t SMCPrintFans(void);
-
-#ifdef __cplusplus
-}
-#endif
-
 #endif

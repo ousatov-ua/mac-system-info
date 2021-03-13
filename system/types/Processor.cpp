@@ -27,7 +27,7 @@ std::string Processor::get_cpu_type() const {
 }
 
 double Processor::get_cpu_temperature() {
-    return readCpuTemp();
+    return SmcLib.readCpuTemp();
 }
 
 nlohmann::json Processor::to_json() {

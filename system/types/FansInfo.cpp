@@ -8,7 +8,7 @@
 #include <sstream>
 
 void FansInfo::update() {
-    fans_info = SMCFans();
+    fans_info = SmcLib.SMCFans();
 }
 
 nlohmann::json FansInfo::to_json() {

@@ -178,7 +178,7 @@ double readGpuTemp() {
     return SMCGetTemperature(SMC_KEY_GPU_TEMP);
 }
 
-float c_strtof(char *str, int size, int e) {
+float c_strtof(const char *str, int size, int e) {
     float total = 0;
     int i;
 
@@ -269,3 +269,11 @@ Fan_info SMCFans() {
     memcpy(fan_info.fans, fans, sizeof(fans));
     return fan_info;
 }
+
+const struct smc_lib SmcLib = {
+        .SMCOpen = SMCOpen,
+        .SMCClose = SMCClose,
+        .readCpuTemp = readCpuTemp,
+        .readGpuTemp = readGpuTemp,
+        .SMCFans = SMCFans
+};

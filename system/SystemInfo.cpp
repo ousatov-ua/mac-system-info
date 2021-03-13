@@ -12,7 +12,7 @@
 SystemInfo::SystemInfo() : processor(std::make_unique<Processor>()), memory(std::make_unique<Memory>()),
                            fans_info(std::make_unique<FansInfo>()),
                            gpu(std::make_unique<Gpu>()) {
-    SMCOpen();
+    SmcLib.SMCOpen();
 }
 
 std::string SystemInfo::to_string() {
@@ -20,7 +20,7 @@ std::string SystemInfo::to_string() {
 }
 
 SystemInfo::~SystemInfo() {
-    SMCClose();
+    SmcLib.SMCClose();
 }
 
 nlohmann::ordered_json SystemInfo::to_json() {
