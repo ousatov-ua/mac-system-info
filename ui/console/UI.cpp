@@ -10,7 +10,7 @@
 #define KEY_QUIT 113
 
 void UI::show(nlohmann::ordered_json &json) {
-    getmaxyx(UI::window, max_y, max_x);
+    getmaxyx(this->window, max_y, max_x);
     attrset(COLOR_PAIR(1));
     clear_line(2, max_x);
     std::string s = std::string("Temperature: ") + json["system_info"]["cpu"]["temperature"].dump();
@@ -20,11 +20,7 @@ void UI::show(nlohmann::ordered_json &json) {
     refresh();
 }
 
-WINDOW *UI::window = nullptr;
-int UI::max_x = 0;
-int UI::max_y = 0;
-
-UI::UI(catch_sig_func catch_sig) {
+UI::UI(catch_sig_func catch_sig):max_x(0), max_y(0) {
     signal(SIGINT, catch_sig);
     initscr();
     keypad(stdscr, true);
@@ -32,7 +28,7 @@ UI::UI(catch_sig_func catch_sig) {
     cbreak();
     noecho();
 
-    UI::window = newwin(0, 0, 0, 0);
+    this->window = newwin(0, 0, 0, 0);
     if (has_colors()) {
         start_color();
         init_pair(1, COLOR_WHITE, COLOR_BLACK);
@@ -43,7 +39,7 @@ UI::UI(catch_sig_func catch_sig) {
 }
 
 void UI::process() {
-    getmaxyx(UI::window, max_y, max_x);
+    getmaxyx(this->window, max_y, max_x);
 
     attrset(COLOR_PAIR(1));
     for (int i = 0; i <= max_y; i++) {

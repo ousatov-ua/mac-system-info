@@ -16,17 +16,17 @@ public:
 
     ~UI();
 
-    static void show(nlohmann::ordered_json &);
+    void show(nlohmann::ordered_json &);
 
 private:
-    static WINDOW *window;
+    WINDOW *window;
 
-    static void process();
+    void process();
 
-    static int max_x;
-    static int max_y;
+    void clear_line(int y, int l);
 
-    static void clear_line(int y, int l);
+    int max_x;
+    int max_y;
 };
 
 

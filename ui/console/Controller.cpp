@@ -5,7 +5,7 @@
 #include "Controller.hpp"
 #include <unistd.h>
 
-#define REFRESH_MICRO_SECONDS 5000000
+#define REFRESH_MICRO_SECONDS 3000000
 
 bool Controller::terminated = false;
 
