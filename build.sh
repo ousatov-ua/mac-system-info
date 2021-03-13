@@ -1,4 +1,6 @@
-# clean
-cmake --build cmake-build-debug --target clean
-# build
-cmake --build cmake-build-debug --target all
+brew tap nlohmann/json
+brew install nlohmann_json
+
+brew install ncurses
+cmake .
+make all
