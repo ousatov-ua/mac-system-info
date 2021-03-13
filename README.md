@@ -1,4 +1,4 @@
-# C++ project for getting System Info for MacOSX
+# System Info for MacOSX
 
 # Screenshot
 
