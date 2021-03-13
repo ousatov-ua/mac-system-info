@@ -20,7 +20,7 @@ void UI::show(nlohmann::ordered_json &json) {
     refresh();
 }
 
-UI::UI(catch_sig_func catch_sig):max_x(0), max_y(0) {
+UI::UI(catch_sig_func catch_sig) : max_x(0), max_y(0) {
     signal(SIGINT, catch_sig);
     initscr();
     keypad(stdscr, true);
