@@ -16,6 +16,12 @@ You'll need `nlomann_json` to build it:
 You'll need `ncurses`:
 `brew install ncurses`
 
+After that run in the root of project:
+
+`cmake .`
+
+`make all`
+
 # The output
 
 Example of output `SystemInfo::to_string()`:
