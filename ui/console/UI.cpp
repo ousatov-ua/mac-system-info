@@ -6,18 +6,68 @@
 #include <ncurses.h>
 #include <memory>
 #include <iostream>
+#include <sstream>
+#include <iomanip>
 
-#define KEY_QUIT 113
+#define row(json, title, data) std::string(title) + json[data].dump()
+#define row_double(json, title, data) std::string(title) + round_double(data)
+#define EMPTY_ROW ""
 
 void UI::show(nlohmann::ordered_json &json) {
     getmaxyx(this->window, max_y, max_x);
+    auto cpu = json["system_info"]["cpu"];
     attrset(COLOR_PAIR(1));
-    clear_line(2, max_x);
-    std::string s = std::string("Temperature: ") + json["system_info"]["cpu"]["temperature"].dump();
-    const char *value = s.c_str();
-    mvaddstr(2, 0, value);
+    writeData(EMPTY_ROW, 1);
+    attrset(COLOR_PAIR(3));
+    writeData(" CPU", 2);
+    attrset(COLOR_PAIR(1));
+    writeData(row(cpu, " Name            : ", "name"), 3);
+    writeData(row(cpu, " Logical Cores   : ", "logical_cores"), 4);
+    writeData(row(cpu, " Physical Cores  : ", "phys_cores"), 5);
+    writeData(row_double(cpu, " Temperature(C)  : ", cpu["temperature"]), 6);
+
+    writeData(EMPTY_ROW, 7);
+
+    attrset(COLOR_PAIR(3));
+    writeData(" GPU", 8);
+    attrset(COLOR_PAIR(1));
+    auto gpu = json["system_info"]["gpu"];
+    writeData(row_double(gpu, " Temperature(C)  : ", gpu["temperature"]), 9);
+
+    writeData(EMPTY_ROW, 10);
+
+    attrset(COLOR_PAIR(3));
+
+    auto fans = json["system_info"]["fans"];
+    std::string fans_title = std::string(" Fans (total ") + std::to_string(fans.size()) + ")";
+    writeData(fans_title, 11);
+    attrset(COLOR_PAIR(1));
+
+    int start = 12;
+    for (int i = 0; i < fans.size(); i++) {
+        auto fan = fans.at(i);
+        writeData(row(fan, " Id              : ", "id"), start + i);
+        writeData(row(fan, " Name            : ", "name"), start + 1 + i);
+        writeData(row_double(fan, " Max speed       : ", fan["maximum_speed"]), start + 2 + i);
+        writeData(row_double(fan, " Min speed       : ", fan["minimal_speed"]), start + 3 + i);
+        writeData(row_double(fan, " Actual speed    : ", fan["actual_speed"]), start + 4 + i);
+        writeData(row_double(fan, " Target speed    : ", fan["target_speed"]), start + 5 + i);
+        writeData(EMPTY_ROW, 17 + i);
+    }
     curs_set(0);
     refresh();
+}
+
+std::string UI::round_double(double value) {
+    std::stringstream stream;
+    stream << std::fixed << std::setprecision(2) << value;
+    return stream.str();
+}
+
+void UI::writeData(const std::string &data, int line) {
+    clear_line(line, max_x);
+    const char *value = data.c_str();
+    mvaddstr(line, 0, value);
 }
 
 UI::UI(catch_sig_func catch_sig) : max_x(0), max_y(0) {
@@ -49,17 +99,12 @@ void UI::process() {
     // Draw header
     attrset(A_BOLD | COLOR_PAIR(2));
     clear_line(0, max_x);
-    mvaddstr(0, 0, "System Info");
-
-    // Draw body
-    attrset(COLOR_PAIR(1));
-    clear_line(1, max_x);
-    mvaddstr(1, 0, "CPU");
+    mvaddstr(0, 0, " SYSTEM INFO");
 
     // Draw status line
     attrset(A_BOLD | COLOR_PAIR(2));
     clear_line(max_y - 2, max_x);
-    mvaddstr(max_y - 2, 0, "Alus Production 2021");
+    mvaddstr(max_y - 2, 0, " Alus Production 2021. Ctrl+C to Exit");
 
     curs_set(0);
     refresh();
@@ -84,3 +129,4 @@ void UI::clear_line(int y, int l) {
 UI::~UI() {
     endwin();
 }
+

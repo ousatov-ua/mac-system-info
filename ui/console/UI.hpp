@@ -27,6 +27,10 @@ private:
 
     int max_x;
     int max_y;
+
+    void writeData(const std::string& data, int line);
+
+    static std::string round_double(double value);
 };
 
 
