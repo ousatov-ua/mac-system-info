@@ -188,7 +188,6 @@ float c_strtof(const char *str, int size, int e) {
         else
             total += str[i] << (size - 1 - i) * (8 - e);
     }
-
     return total;
 }
 
