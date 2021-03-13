@@ -114,7 +114,7 @@ typedef struct {
     int size;
 } Fan_info;
 
-struct smc_lib {
+struct Smc_lib {
     kern_return_t (*SMCOpen)(void);
 
     kern_return_t (*SMCClose)(void);
@@ -126,7 +126,7 @@ struct smc_lib {
     Fan_info (*SMCFans)(void);
 };
 
-extern const struct smc_lib SmcLib;
+extern const struct Smc_lib SmcLib;
 
 #define DATATYPE_FLT          "flt "
 #endif

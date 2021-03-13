@@ -269,7 +269,7 @@ Fan_info SMCFans() {
     return fan_info;
 }
 
-const struct smc_lib SmcLib = {
+const struct Smc_lib SmcLib = {
         .SMCOpen = SMCOpen,
         .SMCClose = SMCClose,
         .readCpuTemp = readCpuTemp,
