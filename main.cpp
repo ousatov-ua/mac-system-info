@@ -1,7 +1,4 @@
-#include <iostream>
 #include "system/SystemInfo.hpp"
-
-
 #include "ui/console/Controller.hpp"
 
 int main() {
