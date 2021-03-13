@@ -52,7 +52,7 @@ void UI::show(nlohmann::ordered_json &json) {
         writeData(row_double(fan, " Min speed       : ", fan["minimal_speed"]), start + 3 + i);
         writeData(row_double(fan, " Actual speed    : ", fan["actual_speed"]), start + 4 + i);
         writeData(row_double(fan, " Target speed    : ", fan["target_speed"]), start + 5 + i);
-        writeData(EMPTY_ROW, 17 + i);
+        writeData(EMPTY_ROW, start + 6 + i);
     }
     curs_set(0);
     refresh();
