@@ -66,7 +66,7 @@ void UI::process() {
 
     /*int last_key = getch();
     if (last_key == KEY_QUIT) {
-        UI::terminated = true;
+        Controller::terminated = true;
     }*/
 }
 
