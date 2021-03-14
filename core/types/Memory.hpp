@@ -12,7 +12,7 @@ class Memory : public Data {
 public:
     Memory();
 
-    nlohmann::json to_json() override;
+    nlohmann::json toJson() override;
 
 private:
     const uint64_t memory;

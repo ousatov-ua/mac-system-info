@@ -9,7 +9,7 @@
 
 class Data {
 public:
-    __unused virtual nlohmann::json to_json() = 0;
+    __unused virtual nlohmann::json toJson() = 0;
 };
 
 

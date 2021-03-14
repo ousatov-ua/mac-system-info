@@ -16,7 +16,7 @@ public:
 
     void update();
 
-    nlohmann::json to_json() override;
+    nlohmann::json toJson() override;
 };
 
 

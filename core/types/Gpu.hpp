@@ -14,7 +14,7 @@ class Gpu : public Data {
 public:
     static double getTemperature();
 
-    nlohmann::json to_json() override;
+    nlohmann::json toJson() override;
 };
 
 

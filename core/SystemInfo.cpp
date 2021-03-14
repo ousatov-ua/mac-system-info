@@ -26,9 +26,9 @@ SystemInfo::~SystemInfo() {
 nlohmann::ordered_json SystemInfo::toJson() {
     nlohmann::ordered_json res;
     const string name = "system_info";
-    res[name]["cpu"] = processor->to_json();
-    res[name]["memory"] = memory->to_json();
-    res[name]["fans"] = fans_info->to_json();
-    res[name]["gpu"] = gpu->to_json();
+    res[name]["cpu"] = processor->toJson();
+    res[name]["memory"] = memory->toJson();
+    res[name]["fans"] = fans_info->toJson();
+    res[name]["gpu"] = gpu->toJson();
     return res;
 }

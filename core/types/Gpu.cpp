@@ -9,7 +9,7 @@ double Gpu::getTemperature() {
     return SmcLib.SMCGpuTemp();
 }
 
-nlohmann::json Gpu::to_json() {
+nlohmann::json Gpu::toJson() {
     nlohmann::ordered_json json;
     json["temperature"] = getTemperature();
     return json;

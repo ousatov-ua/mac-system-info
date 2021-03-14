@@ -12,21 +12,21 @@
 
 class Processor {
 public:
-    const uint64_t cpu_phys_number;
-    const uint64_t cpu_logical_number;
-    const uint64_t cpu_freq;
-    const uint64_t cpu_type;
-    const std::unique_ptr<char[]> cpu_name;
+    const uint64_t physCores;
+    const uint64_t logicalCores;
+    const uint64_t freq;
+    const uint64_t type;
+    const std::unique_ptr<char[]> name;
 
-    static double get_cpu_temperature();
+    static double getTemperature();
 
-    std::string get_cpu_type() const;
+    std::string getType() const;
 
     Processor();
 
     ~ Processor();
 
-    nlohmann::json to_json();
+    nlohmann::json toJson();
 
 };
 

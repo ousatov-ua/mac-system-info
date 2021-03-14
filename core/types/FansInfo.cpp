@@ -11,7 +11,7 @@ void FansInfo::update() {
     fans_info = SmcLib.SMCFans();
 }
 
-nlohmann::json FansInfo::to_json() {
+nlohmann::json FansInfo::toJson() {
     update();
     nlohmann::ordered_json res;
     for (int i = 0; i < fans_info.size; i++) {
