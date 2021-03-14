@@ -13,22 +13,22 @@ class System {
 
 public:
 
-    static uint64_t get_cpu_type();
+    static uint64_t getCpuType();
 
-    static uint64_t get_cpu_freq();
+    static uint64_t getCpuFreq();
 
-    static uint64_t get_physical_cpu();
+    static uint64_t getPhysicalCpuCores();
 
-    static uint64_t get_logic_cpu();
+    static uint64_t getLogicCpuCores();
 
-    static uint64_t get_memory();
+    static uint64_t getMemory();
 
     static void beep();
 
-    static std::unique_ptr<char[]> get_cpu_name();
+    static std::unique_ptr<char[]> getCpuName();
 
 private:
-    static uint64_t fetch_value(const char *func_name);
+    static uint64_t fetchValue(const char *funcName);
 };
 
 

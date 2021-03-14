@@ -17,7 +17,7 @@ Can be built by running `build.sh` (you'll need `brew` installed).
 
 # The output
 
-Example of output `SystemInfo::to_string()`:
+Example of output `SystemInfo::toString()`:
 
 ```json
 {

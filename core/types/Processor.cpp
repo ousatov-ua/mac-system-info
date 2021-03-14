@@ -7,11 +7,11 @@
 #include <nlohmann/json.hpp>
 #include <mach/machine.h>
 
-Processor::Processor() : cpu_phys_number(System::get_physical_cpu()),
-                         cpu_logical_number(System::get_logic_cpu()),
-                         cpu_freq(System::get_cpu_freq()),
-                         cpu_type(System::get_cpu_type()),
-                         cpu_name(System::get_cpu_name()) {
+Processor::Processor() : cpu_phys_number(System::getPhysicalCpuCores()),
+                         cpu_logical_number(System::getLogicCpuCores()),
+                         cpu_freq(System::getCpuFreq()),
+                         cpu_type(System::getCpuType()),
+                         cpu_name(System::getCpuName()) {
 
 }
 
@@ -27,7 +27,7 @@ std::string Processor::get_cpu_type() const {
 }
 
 double Processor::get_cpu_temperature() {
-    return SmcLib.readCpuTemp();
+    return SmcLib.SMCCpuTemp();
 }
 
 nlohmann::json Processor::to_json() {

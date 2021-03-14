@@ -16,9 +16,9 @@ using namespace std;
 
 class SystemInfo {
 public:
-    string to_string();
+    string toString();
 
-    nlohmann::ordered_json to_json();
+    nlohmann::ordered_json toJson();
 
     SystemInfo();
 

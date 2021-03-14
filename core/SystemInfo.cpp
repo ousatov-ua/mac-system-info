@@ -15,15 +15,15 @@ SystemInfo::SystemInfo() : processor(std::make_unique<Processor>()), memory(std:
     SmcLib.SMCOpen();
 }
 
-std::string SystemInfo::to_string() {
-    return to_json().dump(INDENT);
+std::string SystemInfo::toString() {
+    return toJson().dump(INDENT);
 }
 
 SystemInfo::~SystemInfo() {
     SmcLib.SMCClose();
 }
 
-nlohmann::ordered_json SystemInfo::to_json() {
+nlohmann::ordered_json SystemInfo::toJson() {
     nlohmann::ordered_json res;
     const string name = "system_info";
     res[name]["cpu"] = processor->to_json();

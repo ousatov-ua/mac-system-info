@@ -6,7 +6,7 @@
 
 #include "../util/System.hpp"
 
-Memory::Memory() : memory(System::get_memory()) {
+Memory::Memory() : memory(System::getMemory()) {
 
 }
 

@@ -166,7 +166,7 @@ double SMCGetTemperature(char *key) {
  * Read CPU temperature
  * @return CPU temp
  */
-double readCpuTemp() {
+double SMCCpuTemp() {
     return SMCGetTemperature(SMC_KEY_CPU_TEMP);
 }
 
@@ -174,7 +174,7 @@ double readCpuTemp() {
  * Read GPU temperature
  * @return GPU temp
  */
-double readGpuTemp() {
+double SMCGpuTemp() {
     return SMCGetTemperature(SMC_KEY_GPU_TEMP);
 }
 
@@ -269,10 +269,10 @@ Fan_info SMCFans() {
     return fan_info;
 }
 
-const struct Smc_lib SmcLib = {
+const struct Smc SmcLib = {
         .SMCOpen = SMCOpen,
         .SMCClose = SMCClose,
-        .readCpuTemp = readCpuTemp,
-        .readGpuTemp = readGpuTemp,
+        .SMCCpuTemp = SMCCpuTemp,
+        .SMCGpuTemp = SMCGpuTemp,
         .SMCFans = SMCFans
 };
