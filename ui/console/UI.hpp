@@ -23,14 +23,14 @@ private:
 
     void process();
 
-    void clear_line(int y, int l);
+    void clearLine(int y, int l);
 
-    int max_x;
-    int max_y;
+    int max_x_;
+    int max_y_;
 
     void writeData(const std::string& data, int line);
 
-    static std::string round_double(double value);
+    static std::string roundDouble(double value);
 };
 
 

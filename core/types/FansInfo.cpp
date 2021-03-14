@@ -26,7 +26,7 @@ nlohmann::json FansInfo::toJson() {
         res[i]["maximum_speed"] = fan.maximum_speed;
         res[i]["safe_speed"] = fan.safe_speed;
         res[i]["target_speed"] = fan.target_speed;
-        res[i]["name_"] = name;
+        res[i]["name"] = name;
     }
     return res;
 }

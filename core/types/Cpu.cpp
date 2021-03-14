@@ -32,11 +32,11 @@ double Cpu::getTemperature() {
 
 nlohmann::json Cpu::toJson() {
     nlohmann::ordered_json res;
-    res["name_"] = name_.get();
-    res["type_"] = type_;
-    res["phys_cores_"] = phys_cores_;
+    res["name"] = name_.get();
+    res["type"] = type_;
+    res["phys_cores"] = phys_cores_;
     res["logical_cores"] = logical_cores_;
-    res["freq_"] = freq_;
+    res["freq"] = freq_;
     res["temperature"] = getTemperature();
     return res;
 }

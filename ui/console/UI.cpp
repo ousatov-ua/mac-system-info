@@ -10,20 +10,20 @@
 #include <iomanip>
 
 #define row(json, title, data) std::string(title) + json[data].dump()
-#define row_double(json, title, data) std::string(title) + round_double(data)
+#define row_double(json, title, data) std::string(title) + roundDouble(data)
 #define EMPTY_ROW ""
 
 void UI::show(nlohmann::ordered_json &json) {
-    getmaxyx(this->window, max_y, max_x);
+    getmaxyx(this->window, max_y_, max_x_);
     auto cpu = json["system_info"]["cpu"];
     attrset(COLOR_PAIR(1));
     writeData(EMPTY_ROW, 1);
     attrset(COLOR_PAIR(3));
     writeData(" Cpu", 2);
     attrset(COLOR_PAIR(1));
-    writeData(row(cpu, " Name            : ", "name_"), 3);
+    writeData(row(cpu, " Name            : ", "name"), 3);
     writeData(row(cpu, " Logical Cores   : ", "logical_cores"), 4);
-    writeData(row(cpu, " Physical Cores  : ", "phys_cores_"), 5);
+    writeData(row(cpu, " Physical Cores  : ", "phys_cores"), 5);
     writeData(row_double(cpu, " Temperature(C)  : ", cpu["temperature"]), 6);
 
     writeData(EMPTY_ROW, 7);
@@ -31,7 +31,7 @@ void UI::show(nlohmann::ordered_json &json) {
     attrset(COLOR_PAIR(3));
     writeData(" GPU", 8);
     attrset(COLOR_PAIR(1));
-    auto gpu = json["system_info"]["gpu_"];
+    auto gpu = json["system_info"]["gpu"];
     writeData(row_double(gpu, " Temperature(C)  : ", gpu["temperature"]), 9);
 
     writeData(EMPTY_ROW, 10);
@@ -58,19 +58,19 @@ void UI::show(nlohmann::ordered_json &json) {
     refresh();
 }
 
-std::string UI::round_double(double value) {
+std::string UI::roundDouble(double value) {
     std::stringstream stream;
     stream << std::fixed << std::setprecision(2) << value;
     return stream.str();
 }
 
 void UI::writeData(const std::string &data, int line) {
-    clear_line(line, max_x);
+    clearLine(line, max_x_);
     const char *value = data.c_str();
     mvaddstr(line, 0, value);
 }
 
-UI::UI(catch_sig_func catch_sig) : max_x(0), max_y(0) {
+UI::UI(catch_sig_func catch_sig) : max_x_(0), max_y_(0) {
     signal(SIGINT, catch_sig);
     initscr();
     keypad(stdscr, true);
@@ -89,22 +89,22 @@ UI::UI(catch_sig_func catch_sig) : max_x(0), max_y(0) {
 }
 
 void UI::process() {
-    getmaxyx(this->window, max_y, max_x);
+    getmaxyx(this->window, max_y_, max_x_);
 
     attrset(COLOR_PAIR(1));
-    for (int i = 0; i <= max_y; i++) {
-        clear_line(i, max_x);
+    for (int i = 0; i <= max_y_; i++) {
+        clearLine(i, max_x_);
     }
 
     // Draw header
     attrset(A_BOLD | COLOR_PAIR(2));
-    clear_line(0, max_x);
+    clearLine(0, max_x_);
     mvaddstr(0, 0, " SYSTEM INFO");
 
     // Draw status line
     attrset(A_BOLD | COLOR_PAIR(2));
-    clear_line(max_y - 2, max_x);
-    mvaddstr(max_y - 2, 0, " Alus Production 2021. Ctrl+C to Exit");
+    clearLine(max_y_ - 2, max_x_);
+    mvaddstr(max_y_ - 2, 0, " Alus Production 2021. Ctrl+C to Exit");
 
     curs_set(0);
     refresh();
@@ -115,7 +115,7 @@ void UI::process() {
     }*/
 }
 
-void UI::clear_line(int y, int l) {
+void UI::clearLine(int y, int l) {
     move(y, 1);
     l++;
     char str[l];
