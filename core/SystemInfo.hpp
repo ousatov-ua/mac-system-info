@@ -7,7 +7,7 @@
 
 #include <_types/_uint64_t.h>
 #include <string>
-#include "types/Processor.hpp"
+#include "types/Cpu.hpp"
 #include "types/Memory.hpp"
 #include "types/FansInfo.hpp"
 #include "types/Gpu.hpp"
@@ -25,7 +25,7 @@ public:
     ~SystemInfo();
 
 private:
-    std::unique_ptr<Processor> const processor;
+    std::unique_ptr<Cpu> const processor;
     std::unique_ptr<Memory> const memory;
     std::unique_ptr<FansInfo> const fans_info;
     std::unique_ptr<Gpu> const gpu;

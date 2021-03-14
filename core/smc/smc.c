@@ -163,8 +163,8 @@ double SMCGetTemperature(char *key) {
 }
 
 /**
- * Read CPU temperature
- * @return CPU temp
+ * Read Cpu temperature
+ * @return Cpu temp
  */
 double SMCCpuTemp() {
     return SMCGetTemperature(SMC_KEY_CPU_TEMP);

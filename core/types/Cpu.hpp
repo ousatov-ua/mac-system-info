@@ -2,15 +2,15 @@
 // Created by alus on 08.03.2021.
 //
 
-#ifndef SYSTEM_INFO_PROCESSOR_HPP
-#define SYSTEM_INFO_PROCESSOR_HPP
+#ifndef SYSTEM_INFO_CPU_HPP
+#define SYSTEM_INFO_CPU_HPP
 
 #include "types.hpp"
 #include <string>
 #include "nlohmann/json.hpp"
 #include <mach/machine.h>
 
-class Processor {
+class Cpu {
 public:
     const uint64_t physCores;
     const uint64_t logicalCores;
@@ -22,13 +22,12 @@ public:
 
     std::string getType() const;
 
-    Processor();
+    Cpu();
 
-    ~ Processor();
+    ~ Cpu();
 
     nlohmann::json toJson();
-
 };
 
 
-#endif //SYSTEM_INFO_PROCESSOR_HPP
+#endif //SYSTEM_INFO_CPU_HPP

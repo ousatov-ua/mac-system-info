@@ -9,7 +9,7 @@
 
 #define INDENT 4
 
-SystemInfo::SystemInfo() : processor(std::make_unique<Processor>()), memory(std::make_unique<Memory>()),
+SystemInfo::SystemInfo() : processor(std::make_unique<Cpu>()), memory(std::make_unique<Memory>()),
                            fans_info(std::make_unique<FansInfo>()),
                            gpu(std::make_unique<Gpu>()) {
     SmcLib.SMCOpen();

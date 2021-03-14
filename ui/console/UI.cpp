@@ -19,7 +19,7 @@ void UI::show(nlohmann::ordered_json &json) {
     attrset(COLOR_PAIR(1));
     writeData(EMPTY_ROW, 1);
     attrset(COLOR_PAIR(3));
-    writeData(" CPU", 2);
+    writeData(" Cpu", 2);
     attrset(COLOR_PAIR(1));
     writeData(row(cpu, " Name            : ", "name"), 3);
     writeData(row(cpu, " Logical Cores   : ", "logical_cores"), 4);

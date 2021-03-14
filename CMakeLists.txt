@@ -11,7 +11,7 @@ find_library(iokit IOKit)
 
 add_executable(system_info main.cpp core/util/System.cpp core/util/System.hpp
         core/SystemInfo.cpp core/SystemInfo.hpp
-        core/types/Processor.cpp core/types/Processor.hpp
+        core/types/Cpu.cpp core/types/Cpu.hpp
         core/types/types.hpp
         core/types/Memory.cpp core/types/Memory.hpp
         core/types/Data.cpp core/types/Data.hpp

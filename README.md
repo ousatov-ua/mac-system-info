@@ -25,7 +25,7 @@ Example of output `SystemInfo::toString()`:
     "cpu": {
       "freq": 3100000000,
       "logical_cores": 12,
-      "name": "Intel(R) Core(TM) i5-10500 CPU @ 3.10GHz",
+      "name": "Intel(R) Core(TM) i5-10500 Cpu @ 3.10GHz",
       "phys_cores": 6,
       "temperature": 40.187500,
       "type": 7
