@@ -2,7 +2,7 @@
 
 # Screenshot
 
-![alt text](screen.png?raw=true)
+![alt text](screen.jpg?raw=true)
 
 ## Open project
 
