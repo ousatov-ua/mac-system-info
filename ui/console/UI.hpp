@@ -8,18 +8,18 @@
 #include <nlohmann/json.hpp>
 #include "ncurses.h"
 
-using catch_sig_func = void (*)(int);
+using catchSigFunc = void (*)(int);
 
 class UI {
 public:
-    explicit UI(catch_sig_func);
+    explicit UI(catchSigFunc);
 
     ~UI();
 
     void show(nlohmann::ordered_json &);
 
 private:
-    WINDOW *window;
+    WINDOW *window_;
 
     void process();
 

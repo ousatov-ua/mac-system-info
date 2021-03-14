@@ -14,7 +14,7 @@
 #define EMPTY_ROW ""
 
 void UI::show(nlohmann::ordered_json &json) {
-    getmaxyx(this->window, max_y_, max_x_);
+    getmaxyx(this->window_, max_y_, max_x_);
     auto cpu = json["system_info"]["cpu"];
     attrset(COLOR_PAIR(1));
     writeData(EMPTY_ROW, 1);
@@ -47,7 +47,7 @@ void UI::show(nlohmann::ordered_json &json) {
     for (int i = 0; i < fans.size(); i++) {
         auto fan = fans.at(i);
         writeData(row(fan, " Id              : ", "id"), start + i);
-        writeData(row(fan, " Name            : ", "name_"), start + 1 + i);
+        writeData(row(fan, " Name            : ", "name"), start + 1 + i);
         writeData(row_double(fan, " Max speed       : ", fan["maximum_speed"]), start + 2 + i);
         writeData(row_double(fan, " Min speed       : ", fan["minimal_speed"]), start + 3 + i);
         writeData(row_double(fan, " Actual speed    : ", fan["actual_speed"]), start + 4 + i);
@@ -70,7 +70,7 @@ void UI::writeData(const std::string &data, int line) {
     mvaddstr(line, 0, value);
 }
 
-UI::UI(catch_sig_func catch_sig) : max_x_(0), max_y_(0) {
+UI::UI(catchSigFunc catch_sig) : max_x_(0), max_y_(0) {
     signal(SIGINT, catch_sig);
     initscr();
     keypad(stdscr, true);
@@ -78,7 +78,7 @@ UI::UI(catch_sig_func catch_sig) : max_x_(0), max_y_(0) {
     cbreak();
     noecho();
 
-    this->window = newwin(0, 0, 0, 0);
+    this->window_ = newwin(0, 0, 0, 0);
     if (has_colors()) {
         start_color();
         init_pair(1, COLOR_WHITE, COLOR_BLACK);
@@ -89,7 +89,7 @@ UI::UI(catch_sig_func catch_sig) : max_x_(0), max_y_(0) {
 }
 
 void UI::process() {
-    getmaxyx(this->window, max_y_, max_x_);
+    getmaxyx(this->window_, max_y_, max_x_);
 
     attrset(COLOR_PAIR(1));
     for (int i = 0; i <= max_y_; i++) {
