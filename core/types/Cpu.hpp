@@ -12,11 +12,11 @@
 
 class Cpu {
 public:
-    const uint64_t physCores;
-    const uint64_t logicalCores;
-    const uint64_t freq;
-    const uint64_t type;
-    const std::unique_ptr<char[]> name;
+    const uint64_t phys_cores_;
+    const uint64_t logical_cores_;
+    const uint64_t freq_;
+    const uint64_t type_;
+    const std::unique_ptr<char[]> name_;
 
     static double getTemperature();
 

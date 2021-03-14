@@ -28,7 +28,7 @@ public:
     static std::unique_ptr<char[]> getCpuName();
 
 private:
-    static uint64_t fetchValue(const char *funcName);
+    static uint64_t fetchValue(const char *func_name);
 };
 
 

@@ -6,12 +6,12 @@
 
 #include "../util/System.hpp"
 
-Memory::Memory() : memory(System::getMemory()) {
+Memory::Memory() : memory_(System::getMemory()) {
 
 }
 
 nlohmann::json Memory::toJson() {
     nlohmann::ordered_json res;
-    res["memory"] = memory;
+    res["memory_"] = memory_;
     return res;
 }

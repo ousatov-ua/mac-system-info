@@ -8,14 +8,14 @@
 #include <sstream>
 
 void FansInfo::update() {
-    fans_info = SmcLib.SMCFans();
+    fans_info_ = SmcLib.SMCFans();
 }
 
 nlohmann::json FansInfo::toJson() {
     update();
     nlohmann::ordered_json res;
-    for (int i = 0; i < fans_info.size; i++) {
-        auto fan = fans_info.fans[i];
+    for (int i = 0; i < fans_info_.size; i++) {
+        auto fan = fans_info_.fans[i];
         std::stringstream ss;
         ss << fan.name;
         std::string name;
@@ -26,7 +26,7 @@ nlohmann::json FansInfo::toJson() {
         res[i]["maximum_speed"] = fan.maximum_speed;
         res[i]["safe_speed"] = fan.safe_speed;
         res[i]["target_speed"] = fan.target_speed;
-        res[i]["name"] = name;
+        res[i]["name_"] = name;
     }
     return res;
 }

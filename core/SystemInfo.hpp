@@ -25,10 +25,10 @@ public:
     ~SystemInfo();
 
 private:
-    std::unique_ptr<Cpu> const processor;
-    std::unique_ptr<Memory> const memory;
-    std::unique_ptr<FansInfo> const fans_info;
-    std::unique_ptr<Gpu> const gpu;
+    std::unique_ptr<Cpu> const processor_;
+    std::unique_ptr<Memory> const memory_;
+    std::unique_ptr<FansInfo> const fans_info_;
+    std::unique_ptr<Gpu> const gpu_;
 };
 
 

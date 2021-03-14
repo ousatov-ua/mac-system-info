@@ -37,10 +37,10 @@ uint64_t System::getMemory() {
 }
 
 
-uint64_t System::fetchValue(const char *funcName) {
+uint64_t System::fetchValue(const char *func_name) {
     uint64_t number = 0;
     size_t size = sizeof(number);
-    sysctlbyname(funcName, &number, &size, nullptr, 0);
+    sysctlbyname(func_name, &number, &size, nullptr, 0);
     return number;
 }
 

@@ -7,23 +7,23 @@
 #include <nlohmann/json.hpp>
 #include <mach/machine.h>
 
-Cpu::Cpu() : physCores(System::getPhysicalCpuCores()),
-             logicalCores(System::getLogicCpuCores()),
-             freq(System::getCpuFreq()),
-             type(System::getCpuType()),
-             name(System::getCpuName()) {
+Cpu::Cpu() : phys_cores_(System::getPhysicalCpuCores()),
+             logical_cores_(System::getLogicCpuCores()),
+             freq_(System::getCpuFreq()),
+             type_(System::getCpuType()),
+             name_(System::getCpuName()) {
 
 }
 
 Cpu::~Cpu() = default;
 
 std::string Cpu::getType() const {
-    if (CPU_TYPE_I860 == type) {
+    if (CPU_TYPE_I860 == type_) {
         return std::string("I860");
-    } else if (CPU_TYPE_X86 == type) {
+    } else if (CPU_TYPE_X86 == type_) {
         return std::string("Intel");
     }
-    return std::to_string(type);
+    return std::to_string(type_);
 }
 
 double Cpu::getTemperature() {
@@ -32,11 +32,11 @@ double Cpu::getTemperature() {
 
 nlohmann::json Cpu::toJson() {
     nlohmann::ordered_json res;
-    res["name"] = name.get();
-    res["type"] = type;
-    res["phys_cores"] = physCores;
-    res["logical_cores"] = logicalCores;
-    res["freq"] = freq;
+    res["name_"] = name_.get();
+    res["type_"] = type_;
+    res["phys_cores_"] = phys_cores_;
+    res["logical_cores"] = logical_cores_;
+    res["freq_"] = freq_;
     res["temperature"] = getTemperature();
     return res;
 }

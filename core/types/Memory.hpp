@@ -15,7 +15,7 @@ public:
     nlohmann::json toJson() override;
 
 private:
-    const uint64_t memory;
+    const uint64_t memory_;
 };
 
 

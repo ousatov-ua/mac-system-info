@@ -9,9 +9,9 @@
 
 #define INDENT 4
 
-SystemInfo::SystemInfo() : processor(std::make_unique<Cpu>()), memory(std::make_unique<Memory>()),
-                           fans_info(std::make_unique<FansInfo>()),
-                           gpu(std::make_unique<Gpu>()) {
+SystemInfo::SystemInfo() : processor_(std::make_unique<Cpu>()), memory_(std::make_unique<Memory>()),
+                           fans_info_(std::make_unique<FansInfo>()),
+                           gpu_(std::make_unique<Gpu>()) {
     SmcLib.SMCOpen();
 }
 
@@ -26,9 +26,9 @@ SystemInfo::~SystemInfo() {
 nlohmann::ordered_json SystemInfo::toJson() {
     nlohmann::ordered_json res;
     const string name = "system_info";
-    res[name]["cpu"] = processor->toJson();
-    res[name]["memory"] = memory->toJson();
-    res[name]["fans"] = fans_info->toJson();
-    res[name]["gpu"] = gpu->toJson();
+    res[name]["cpu"] = processor_->toJson();
+    res[name]["memory_"] = memory_->toJson();
+    res[name]["fans"] = fans_info_->toJson();
+    res[name]["gpu_"] = gpu_->toJson();
     return res;
 }

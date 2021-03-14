@@ -21,9 +21,9 @@ void UI::show(nlohmann::ordered_json &json) {
     attrset(COLOR_PAIR(3));
     writeData(" Cpu", 2);
     attrset(COLOR_PAIR(1));
-    writeData(row(cpu, " Name            : ", "name"), 3);
+    writeData(row(cpu, " Name            : ", "name_"), 3);
     writeData(row(cpu, " Logical Cores   : ", "logical_cores"), 4);
-    writeData(row(cpu, " Physical Cores  : ", "phys_cores"), 5);
+    writeData(row(cpu, " Physical Cores  : ", "phys_cores_"), 5);
     writeData(row_double(cpu, " Temperature(C)  : ", cpu["temperature"]), 6);
 
     writeData(EMPTY_ROW, 7);
@@ -31,7 +31,7 @@ void UI::show(nlohmann::ordered_json &json) {
     attrset(COLOR_PAIR(3));
     writeData(" GPU", 8);
     attrset(COLOR_PAIR(1));
-    auto gpu = json["system_info"]["gpu"];
+    auto gpu = json["system_info"]["gpu_"];
     writeData(row_double(gpu, " Temperature(C)  : ", gpu["temperature"]), 9);
 
     writeData(EMPTY_ROW, 10);
@@ -47,7 +47,7 @@ void UI::show(nlohmann::ordered_json &json) {
     for (int i = 0; i < fans.size(); i++) {
         auto fan = fans.at(i);
         writeData(row(fan, " Id              : ", "id"), start + i);
-        writeData(row(fan, " Name            : ", "name"), start + 1 + i);
+        writeData(row(fan, " Name            : ", "name_"), start + 1 + i);
         writeData(row_double(fan, " Max speed       : ", fan["maximum_speed"]), start + 2 + i);
         writeData(row_double(fan, " Min speed       : ", fan["minimal_speed"]), start + 3 + i);
         writeData(row_double(fan, " Actual speed    : ", fan["actual_speed"]), start + 4 + i);
