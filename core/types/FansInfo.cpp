@@ -21,12 +21,12 @@ nlohmann::json FansInfo::toJson() {
         std::string name;
         ss >> name;
         res[i]["id"] = fan.id;
+        res[i]["name"] = name;
         res[i]["actual_speed"] = fan.actual_speed;
         res[i]["minimal_speed"] = fan.minimal_speed;
         res[i]["maximum_speed"] = fan.maximum_speed;
         res[i]["safe_speed"] = fan.safe_speed;
         res[i]["target_speed"] = fan.target_speed;
-        res[i]["name"] = name;
     }
     return res;
 }
