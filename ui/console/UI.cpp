@@ -21,10 +21,10 @@ void UI::show(nlohmann::ordered_json &json) {
     attrset(COLOR_PAIR(3));
     writeData(" Cpu", 2);
     attrset(COLOR_PAIR(1));
-    writeData(row(cpu, " Name            : ", "name"), 3);
-    writeData(row(cpu, " Logical Cores   : ", "logical_cores"), 4);
-    writeData(row(cpu, " Physical Cores  : ", "phys_cores"), 5);
-    writeData(row_double(cpu, " Temperature(C)  : ", cpu["temperature"]["celsius"]), 6);
+    writeData(row(cpu, " Name              : ", "name"), 3);
+    writeData(row(cpu, " Logical Cores     : ", "logical_cores"), 4);
+    writeData(row(cpu, " Physical Cores    : ", "phys_cores"), 5);
+    writeData(row_double(cpu, " Temperature(C)    : ", cpu["temperature"]["celsius"]), 6);
 
     writeData(EMPTY_ROW, 7);
 
@@ -32,7 +32,7 @@ void UI::show(nlohmann::ordered_json &json) {
     writeData(" GPU", 8);
     attrset(COLOR_PAIR(1));
     auto gpu = json["system_info"]["gpu"];
-    writeData(row_double(gpu, " Temperature(C)  : ", gpu["temperature"]["celsius"]), 9);
+    writeData(row_double(gpu, " Temperature(C)    : ", gpu["temperature"]["celsius"]), 9);
 
     writeData(EMPTY_ROW, 10);
 
@@ -47,13 +47,13 @@ void UI::show(nlohmann::ordered_json &json) {
     int rows = 8;
     for (int i = 0; i < fans.size(); i++) {
         auto fan = fans.at(i);
-        writeData(row(fan, " Id              : ", "id"), start + rows * i + i);
-        writeData(row(fan, " Name            : ", "name"), start + rows * i + 1 + i);
-        writeData(row_double(fan, " Max speed       : ", fan["maximum_speed"]["rpm"]), start + rows * i + 2 + i);
-        writeData(row_double(fan, " Min speed       : ", fan["minimal_speed"]["rpm"]), start + rows * i + 3 + i);
-        writeData(row_double(fan, " Actual speed    : ", fan["actual_speed"]["rpm"]), start + rows * i + 4 + i);
-        writeData(row_double(fan, " Target speed    : ", fan["target_speed"]["rpm"]), start + rows * i + 5 + i);
-        writeData(row(fan, " Mode            : ", "mode"), start + rows * i + 6 + i);
+        writeData(row(fan, " Id                : ", "id"), start + rows * i + i);
+        writeData(row(fan, " Name              : ", "name"), start + rows * i + 1 + i);
+        writeData(row_double(fan, " Max speed(rpm)    : ", fan["maximum_speed"]["rpm"]), start + rows * i + 2 + i);
+        writeData(row_double(fan, " Min speed(rpm)    : ", fan["minimal_speed"]["rpm"]), start + rows * i + 3 + i);
+        writeData(row_double(fan, " Actual speed(rpm) : ", fan["actual_speed"]["rpm"]), start + rows * i + 4 + i);
+        writeData(row_double(fan, " Target speed(rpm) : ", fan["target_speed"]["rpm"]), start + rows * i + 5 + i);
+        writeData(row(fan, " Mode              : ", "mode"), start + rows * i + 6 + i);
     }
     curs_set(0);
     refresh();
