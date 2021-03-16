@@ -47,8 +47,8 @@
 #define SMC_KEY_GPU_TEMP "TG0P"
 #define SMC_KEY_FAN0_RPM_CUR "F0Ac"
 
-#define CPU_AUTO 0;
-#define CPU_FORCED 1;
+#define FAN_AUTO 0
+#define FAN_FORCED 1
 
 typedef struct {
     char major;

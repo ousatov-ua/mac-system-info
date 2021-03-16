@@ -252,15 +252,15 @@ Fan_info SMCFans() {
         SMCReadKey("FS! ", &val);
         if (val.dataSize > 0) {
             if ((c_strtoul((char *) val.bytes, 2, 16) & (1 << i)) == 0)
-                fan.mode = CPU_AUTO
+                fan.mode = FAN_AUTO;
             else
-                fan.mode = CPU_FORCED
+                fan.mode = FAN_FORCED;
         } else {
             SMCReadKey(key, &val);
             if (float_from_val(val))
-                fan.mode = CPU_FORCED
+                fan.mode = FAN_FORCED;
             else
-                fan.mode = CPU_AUTO
+                fan.mode = FAN_AUTO;
         }
         fans[i] = fan;
     }

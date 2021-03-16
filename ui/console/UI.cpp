@@ -44,7 +44,7 @@ void UI::show(nlohmann::ordered_json &json) {
     attrset(COLOR_PAIR(1));
 
     int start = 12;
-    int rows = 7;
+    int rows = 8;
     for (int i = 0; i < fans.size(); i++) {
         auto fan = fans.at(i);
         writeData(row(fan, " Id              : ", "id"), start + rows * i + i);
@@ -53,7 +53,8 @@ void UI::show(nlohmann::ordered_json &json) {
         writeData(row_double(fan, " Min speed       : ", fan["minimal_speed"]["rpm"]), start + rows * i + 3 + i);
         writeData(row_double(fan, " Actual speed    : ", fan["actual_speed"]["rpm"]), start + rows * i + 4 + i);
         writeData(row_double(fan, " Target speed    : ", fan["target_speed"]["rpm"]), start + rows * i + 5 + i);
-        writeData(EMPTY_ROW, start + rows * i + 6 + i);
+        writeData(row(fan, " Mode            : ", "mode"), start + rows * i + 6 + i);
+        writeData(EMPTY_ROW, start + rows * i + 7 + i);
     }
     curs_set(0);
     refresh();

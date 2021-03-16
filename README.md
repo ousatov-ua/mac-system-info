@@ -56,6 +56,7 @@ Example of output `SystemInfo::toString()`:
         "minimal_speed": {
           "rpm": 2160.0
         },
+        "mode": "forced",
         "name": "Left",
         "safe_speed": {
           "rpm": -1.0
@@ -75,6 +76,7 @@ Example of output `SystemInfo::toString()`:
         "minimal_speed": {
           "rpm": 2000.0
         },
+        "mode": "forced",
         "name": "Right",
         "safe_speed": {
           "rpm": -1.0

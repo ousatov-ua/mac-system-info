@@ -27,6 +27,7 @@ nlohmann::json FansInfo::toJson() {
         res[i]["maximum_speed"]["rpm"] = fan.maximum_speed;
         res[i]["safe_speed"]["rpm"]= fan.safe_speed;
         res[i]["target_speed"]["rpm"] = fan.target_speed;
+        res[i]["mode"] = fan.mode == FAN_FORCED ? "forced" : "auto";
     }
     return res;
 }
