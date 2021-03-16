@@ -15,6 +15,22 @@
 
 void UI::show(nlohmann::ordered_json &json) {
     getmaxyx(this->window_, max_y_, max_x_);
+
+    attrset(COLOR_PAIR(1));
+    for (int i = 0; i <= max_y_; i++) {
+        clearLine(i, max_x_);
+    }
+
+    // Draw header
+    attrset(A_BOLD | COLOR_PAIR(2));
+    clearLine(0, max_x_);
+    mvaddstr(0, 0, " SYSTEM INFO");
+
+    // Draw status line
+    attrset(A_BOLD | COLOR_PAIR(2));
+    clearLine(max_y_ - 2, max_x_);
+    mvaddstr(max_y_ - 2, 0, " Alus Production 2021. Ctrl+C to Exit");
+
     auto cpu = json["system_info"]["cpu"];
     attrset(COLOR_PAIR(1));
     writeData(EMPTY_ROW, 1);
@@ -57,6 +73,12 @@ void UI::show(nlohmann::ordered_json &json) {
     }
     curs_set(0);
     refresh();
+
+
+    /*int last_key = getch();
+    if (last_key == KEY_QUIT) {
+        Controller::terminated = true;
+    }*/
 }
 
 std::string UI::roundDouble(double value) {
@@ -86,34 +108,6 @@ UI::UI(catchSigFunc catch_sig) : max_x_(0), max_y_(0) {
         init_pair(2, COLOR_GREEN, COLOR_BLUE);
         init_pair(3, COLOR_BLACK, COLOR_CYAN);
     }
-    process();
-}
-
-void UI::process() {
-    getmaxyx(this->window_, max_y_, max_x_);
-
-    attrset(COLOR_PAIR(1));
-    for (int i = 0; i <= max_y_; i++) {
-        clearLine(i, max_x_);
-    }
-
-    // Draw header
-    attrset(A_BOLD | COLOR_PAIR(2));
-    clearLine(0, max_x_);
-    mvaddstr(0, 0, " SYSTEM INFO");
-
-    // Draw status line
-    attrset(A_BOLD | COLOR_PAIR(2));
-    clearLine(max_y_ - 2, max_x_);
-    mvaddstr(max_y_ - 2, 0, " Alus Production 2021. Ctrl+C to Exit");
-
-    curs_set(0);
-    refresh();
-
-    /*int last_key = getch();
-    if (last_key == KEY_QUIT) {
-        Controller::terminated = true;
-    }*/
 }
 
 void UI::clearLine(int y, int l) {

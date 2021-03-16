@@ -21,9 +21,7 @@ public:
 private:
     WINDOW *window_;
 
-    void process();
-
-    void clearLine(int y, int l);
+    static void clearLine(int y, int l);
 
     int max_x_;
     int max_y_;
