@@ -26,7 +26,7 @@ private:
     int max_x_;
     int max_y_;
 
-    void writeData(const std::string& data, int line);
+    void writeData(const std::string &data, int line);
 
     static std::string roundDouble(double value);
 };
