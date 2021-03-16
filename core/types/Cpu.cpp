@@ -37,7 +37,7 @@ nlohmann::json Cpu::toJson() {
     res["phys_cores"] = phys_cores_;
     res["logical_cores"] = logical_cores_;
     res["freq"] = freq_;
-    res["temperature"] = getTemperature();
+    res["temperature"]["celsius"] = getTemperature();
     return res;
 }
 

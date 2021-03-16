@@ -11,6 +11,6 @@ double Gpu::getTemperature() {
 
 nlohmann::json Gpu::toJson() {
     nlohmann::ordered_json json;
-    json["temperature"] = getTemperature();
+    json["temperature"]["celsius"] = getTemperature();
     return json;
 }
