@@ -60,7 +60,7 @@ void UI::show(nlohmann::ordered_json &json) {
     attrset(COLOR_PAIR(1));
 
     int start = 12;
-    int rows = 8;
+    int rows = 7;
     for (int i = 0; i < fans.size(); i++) {
         auto fan = fans.at(i);
         writeData(row(fan, " Id                : ", "id"), start + rows * i + i);
