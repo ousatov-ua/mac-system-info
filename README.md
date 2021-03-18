@@ -2,7 +2,7 @@
 
 ## Screenshot of UI (ncurses)
 
-![alt text](screen.jpg?raw=true){ width=50\% }
+![alt text](screen.jpg?raw=true)
 
 
 ## Run program
