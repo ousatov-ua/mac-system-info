@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.17)
-project(system_info)
+project(system-info)
 
 include_directories(/usr/bin/include)
 
@@ -9,7 +9,7 @@ find_package(Curses REQUIRED)
 
 find_library(iokit IOKit)
 
-add_executable(system_info main.cpp core/util/System.cpp core/util/System.hpp
+add_executable(system-info main.cpp core/util/System.cpp core/util/System.hpp
         core/SystemInfo.cpp core/SystemInfo.hpp
         core/types/Cpu.cpp core/types/Cpu.hpp
         core/types/types.hpp
@@ -18,4 +18,4 @@ add_executable(system_info main.cpp core/util/System.cpp core/util/System.hpp
         core/smc/smc.c core/smc/smc.h
         core/types/FansInfo.cpp core/types/FansInfo.hpp
         core/types/Gpu.cpp core/types/Gpu.hpp ui/console/UI.cpp ui/console/UI.hpp ui/console/Controller.cpp ui/console/Controller.hpp)
-target_link_libraries(system_info nlohmann_json Curses "-framework IOKit")
+target_link_libraries(system-info nlohmann_json Curses "-framework IOKit")
