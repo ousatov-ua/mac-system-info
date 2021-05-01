@@ -1,5 +1,6 @@
 clang++
-%h -x c++-header
+%h -x c-header
+%hpp -x c++-header
 -Wall
 -Wextra
 -std=c++14
