@@ -1,0 +1,13 @@
+clang++
+%h -x c++-header
+-Wall
+-Wextra
+-std=c++14
+-stdlib=libc++
+%cpp -std=c++14
+%c -std=c14
+-isystem/usr/local/include
+-isystem/usr/local/opt/boost/include
+-isystem/usr/local/opt/openssl/include
+
+
